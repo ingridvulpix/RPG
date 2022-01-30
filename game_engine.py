@@ -1,8 +1,8 @@
 import sys,time,random
 import pickle 
 
-def slow_type(t):
-    typing_speed = 85 #wpm
+def slow_type(t):#Velocidade do texto
+    typing_speed = 95 #wpm
     for l in t:
         sys.stdout.write(l)
         sys.stdout.flush()
@@ -10,12 +10,12 @@ def slow_type(t):
     print('')
 
 
-def get_input(valid_input: list):
+def get_input(valid_input: list):#Tratamento de erro caso usuário não selecione uma opção válida
   while True:
     user_entered = input()
     if user_entered not in valid_input:
-      print("Invalid input. Please use one \
-              of the following inputs:\n")
+      print("Input inválido. Por favor, use um \
+              dos seguintes inputs:\n")
       print(valid_input)
       user_entered = None
     else:
@@ -25,11 +25,11 @@ def get_input(valid_input: list):
 def display_page_text(lines: list):
   for line in lines:
     slow_type(line)
-    # Make the user press enter to see the next line
+    # Usuário deve pressionar enter para continuar
     get_input([""])
 
 
-def get_response(options: list):
+def get_response(options: list): #Pega a resposta do usuário dentre as opções
   for index, option in enumerate(options):
     print(str(index) + ". " + option[0])
   
