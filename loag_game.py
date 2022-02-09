@@ -130,6 +130,5 @@ story = {
     },
 }
 
-
 with open('chapter1.ch', 'wb') as chapter:
   pickle.dump(story, chapter)

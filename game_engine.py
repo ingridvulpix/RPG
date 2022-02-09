@@ -9,7 +9,6 @@ def slow_type(t):#Velocidade do texto
         time.sleep(random.random()*10.0/typing_speed)
     print('')
 
-
 def get_input(valid_input: list):#Tratamento de erro caso usuário não selecione uma opção válida
   while True:
     user_entered = input()
