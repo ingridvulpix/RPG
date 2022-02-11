@@ -1,8 +1,11 @@
 import sys,time,random
 import pickle 
 
+#TO DO: ACERTAR O NUMERO DO CAP AO SER FINALIZADO
+#TO DO: POSSIBILITAR QUE O USUÁRIO ESCOLHA O CAPITULO A SER JOGADO
+
 def slow_type(t):#Velocidade do texto
-    typing_speed = 95 #wpm
+    typing_speed = 100 #wpm
     for l in t:
         sys.stdout.write(l)
         sys.stdout.flush()
@@ -38,9 +41,33 @@ def get_response(options: list): #Pega a resposta do usuário dentre as opções
 
   return options[option_index][1]
 
+def next_chap(cap):
+  continue_game = False
+  print("Fim do capítulo {}, deseja continuar?(S/N)".format(cap))
+  while True:
+      valid_answer = ("S","N")
+      answer_continue = input("")
+      answer_continue = answer_continue.upper()
+      if answer_continue not in valid_answer:
+          print("Input inválido. Por favor, use um dos seguintes inputs:\n")
+          print(str(valid_answer[0]) + '\n' + str(valid_answer[1]))
+          answer_continue = None
+      
+      if answer_continue == "N":
+          print('Fim de jogo')
+          return continue_game
+
+      if answer_continue == "S":
+          print('Prox cap')
+          continue_game = True
+          chapter_two()
+          return continue_game
+
+
 
 def story_flow(story: dict):
   curr_page = 1
+  cap = 0
 
   while curr_page != None:
     page = story.get(curr_page, None)
@@ -53,10 +80,19 @@ def story_flow(story: dict):
     
     if len(page['Options']) == 0:
       curr_page = None
-      break
+      cap += 1
+      if next_chap(cap) == False:
+        break
 
     curr_page = get_response(page['Options'])
    
+def chapter_two():
+  story = {}
+  with open('chapter2.ch', 'rb') as chapter2:
+    story = pickle.load(chapter2)
+
+  story_flow(story)
+
 if __name__=='__main__':
     story = {}
     with open('chapter1.ch', 'rb') as chapter:
