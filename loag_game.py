@@ -130,5 +130,5 @@ story = {
     },
 }
 
-with open('chapter1.ch', 'wb') as chapter:
+with open('chapter1.bin', 'wb') as chapter:
   pickle.dump(story, chapter)
