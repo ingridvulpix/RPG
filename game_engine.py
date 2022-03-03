@@ -88,14 +88,14 @@ def story_flow(story: dict):
    
 def chapter_two():
   story = {}
-  with open('chapter2.ch', 'rb') as chapter2:
+  with open('chapter2.bin', 'rb') as chapter2:
     story = pickle.load(chapter2)
 
   story_flow(story)
 
 if __name__=='__main__':
     story = {}
-    with open('chapter1.ch', 'rb') as chapter:
+    with open('chapter1.bin', 'rb') as chapter:
  
         story = pickle.load(chapter)
 
